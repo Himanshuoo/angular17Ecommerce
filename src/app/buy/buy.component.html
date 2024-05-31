@@ -1,0 +1,12 @@
+<form  #frm="ngForm" action="" (ngSubmit)="placeorder(frm.value)">
+<img src="http://localhost:3000/{{pimage}}"><br><br>
+{{pid}}<br><br>
+{{pname}}<br><br>
+{{price}}<br><br>
+<label>Enter quantity</label>
+<input type=number name="qty" [(ngModel)]="qty" class="form-control">
+<input type="submit" value="confirm buy" class="btn btn-primary">
+<div class="btn btn-info">
+Total Price : {{qty * price}}
+</div>
+</form>

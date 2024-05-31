@@ -1,0 +1,69 @@
+<style>
+.v{
+    border: 3px solid green;
+    background-color: blanchedalmond;
+}
+.i{
+    border: 3px solid hsl(0, 100%, 50%);
+    background-color: blanchedalmond;
+}
+</style>
+
+<form #frm="ngForm"  style="width:500px; margin-left: 300px;" (ngSubmit)="loginuser(frm.value)">
+    {{frm.value|json}}
+    <span class="material-icons"  style="color: cadetblue; font-size: 50px;">
+        person
+        </span>
+    <input type="text" class="form-control" id="uid" name="uname" #u="ngModel" minlength="5" required ngModel [class.v]="u.valid && u.untouched" [class.i]="u.invalid && u.touched"  placeholder="enter username"/>
+   <div class=" btn btn-info">
+    <div *ngIf="u.errors?.['required'] && u.touched">Enter Username</div>   
+   </div><!-- {{u.touched}} <br>
+    {{u.untouched}} <br> -->
+    <!-- {{u.dirty}}  <br>
+    {{u.pristine}} -->
+    <!-- {{u.valid}}
+    {{u.invalid}} -->
+
+    <span class="material-icons"   style="color: bisque; font-size: 50px;">
+        key
+        </span>
+    <input type="password" class="form-control" name="password" id="pwd" #p ="ngModel" required ngModel [class.v]="p.valid && p.untouched " [class.i]="p.invalid && p.touched"  placeholder="enter password"/>
+    <div class="btn btn-info">
+    <div *ngIf="p.errors?.['required'] && p.touched">Enter Password</div> 
+</div>
+    <br>
+    
+<input type="submit" value="Login" class="btn btn-primary"  style="margin-right:20px; width: 150px;" (click)="validate"/>
+
+        <a routerLink="/register" class="btn btn-info">New user?Click here</a>
+</form>
+
+
+<!-- <div style="width:500px; margin-left: 300px;">
+    <form>
+    
+        <span class="material-icons"  style="color: cadetblue; font-size: 50px;">
+            person
+            </span>
+        <input type="text" class="form-control" id="uid" placeholder="enter username"/>
+        
+    
+        <span class="material-icons"   style="color: bisque; font-size: 50px;">
+            key
+            </span>
+        <input type="password" class="form-control" id="pwd" placeholder="enter password"/>
+    <br>
+        <input type="button" value="Login" class="btn btn-primary"  style="margin-right:20px; width: 150px;" (click)="validate()"/>
+        
+        <a routerLink="/register" class="btn btn-info">New user?Click here</a>
+
+
+        <div style="background-color: aqua; margin-top: 50px;" > {{status}}</div>
+    </form>
+    </div> -->
+
+
+
+
+
+

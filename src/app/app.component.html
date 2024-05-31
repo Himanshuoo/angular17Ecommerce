@@ -1,0 +1,52 @@
+
+<div class = "container" style="border-radius: 20px; padding: 50px;">  
+  <nav class = "navbar bg-dark navbar-dark" style="border-radius: 25px;">  
+ <a class = "navbar-brand" style="margin-left: 25px;" routerLink="/products" > <img src="\assets\logo.jpg" style="width: 50px;"> </a>  
+ <ul class = "nav">  
+ <li class = "nav-item">  
+ <a class = "nav-link" routerLink = "/products"> products </a>  
+ 
+ </li>  
+ <li class = "nav-item">  
+  <a class = "nav-link" routerLink = "/login"> Login </a>  
+  </li>  
+  <li class = "nav-item">  
+    <a class = "nav-link" routerLink = "/parent"> Parent </a>  
+    </li>  
+ <li class = "nav-item">  
+ <a class = "nav-link" routerLink = "/buy"> Buy </a>  
+ </li>  
+ <li class = "nav-item">  
+ <a class = "nav-link" routerLink = "/feedback">Feedback </a>  
+ </li>  
+ <li class = "nav-item">  
+  <a class = "nav-link" routerLink = "/ang"> Angular17Features </a>  
+  </li>  
+ </ul>  
+ <form class="d-flex justify-content-end">  
+ <input class="form-control me-2" type="text"   id="txtsearch" placeholder="Search for products">  
+ <button class="btn btn-success" style="margin-right: 25px;" (click)="show()"  type="button">Search</button>  
+ </form>  
+ </nav>  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<router-outlet></router-outlet>

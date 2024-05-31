@@ -1,0 +1,49 @@
+<p>products works!</p>
+
+<style>
+.hi{
+    background-color: bisque;
+}
+.odd{
+    background-color: aqua;
+}
+
+
+
+
+</style>
+
+<input type="button" value="Hide/Show" class="btn-success" (click)="Unhide()">
+<div  *ngIf="exist" class="row" >
+    <div class="col-md-4" *ngFor = "let i of prod">
+        <img src="http://localhost:3000/{{i.pimage}}"/><br>
+        <div>{{i.pid}}</div>
+        <div> {{i.pname  | uppercase }}</div>
+        <div>Price: {{i.price  | currency:'INR'}}</div>
+        <div>  Discount Price: {{i.price | discount:30 | currency:'INR'}}</div>
+        <div>Total item available: {{i.qty }}</div>
+        <div><a routerLink="/buy" [queryParams] ="{a:i.pid,b:i.pname,c:i.pimage,d:i.price,e:i.qty}" class="btn btn-success">Buy</a></div>
+            
+        </div>
+    </div>
+  
+
+<!-- <div *ngFor="let items of prod;let i = index;let f = first;let l = last;let e = even;let o = odd;" [class.hi]="e"  [class.odd]="o">
+    {{i+1}} <br>
+    {{f}} <br>
+     {{l}} <br>
+     {{e}} <br>
+     {{o}} <br>
+   
+    {{items.pid}} <br>
+    {{items.pname}} <br>
+    {{items.price}} <br>
+    {{items.qty}} <br>
+    <img src={{items.pimage}}/><br>
+   
+
+
+
+
+
+</div> -->
