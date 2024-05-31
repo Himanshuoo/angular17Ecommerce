@@ -1,0 +1,349 @@
+npm i -g @angular/cli ------ Install Angular
+ng version
+npm install bootsrap
+npm install jquery
+ng serve -- to run/build the angular
+
+http://localhost:4200 
+
+
+ng new ProjectName 
+ng g c componentname
+ng g c componentname --flat (without folder directly to app folder it will generate file)
+ng g module moduleName
+ng g c hyderbad --inline-template  or -t
+ng g c hyderbad --inline-style    or -s
+
+
+Angular folder structure---
+->assets folder contains images, audio, video etc...
+->index.html is the one that run on start of angular application here we do all routing.
+->main.ts file this is entry point for project as soon as we run the project this gets executed first.
+
+
+Directive example-
+
+<app-root></app-route>
+
+
+
+
+
+@Component?/*(this is Decorator it starts with annotation // one per file )*/({
+  selector: 'app-root',
+  templateUrl: './app.component.html',// used for Html page we can directly write inline html using template 
+  styleUrl: './app.component.css'  // used for Css page we can define inline using styles
+})
+export class AppComponent {
+  title = 'Online';
+}
+
+
+
+Here Decorator is made of three properties--
+1)selector:used for routing
+2)templateurl
+3)styleUrl
+
+
+Appmodule.ts--
+
+It contains --
+1)declaration where we define the components to load 
+2)imports contains Browsermodule which handle custom tags and ApproutingModule which is for naviagtion. 
+
+
+
+how angular starts-----
+
+if we build first main.ts files gets executed first. then coponents inside module.ts bootsraped. 
+
+
+Template is html as well css combined together.
+
+
+Metadata- everything such as template, css, html, selector etc... 
+
+component- template + class+ Metadata
+
+export is keyword to export to module.ts
+
+
+
+Interpolation = used to acieve one way data binding from component to view  {{title}}
+
+PropertBinding  = used to acieve one way data binding from component to view  []
+
+EventBinding == syntax- () 
+
+StyleBinding- 
+
+NgModel == to achieve two way data binding component to view and view to component.  [{}]
+
+
+Structural Directives--
+
+for rendering element 
+
+NgIf-- use to put condition syntax- *ngIf
+
+NgFor--  to iterate through element or display array we use this Syntax- *ngFor 
+
+NgSwitch----   *ngSwitch
+
+========================================================================================================================
+
+Routing---
+
+
+Approuting.module.ts--- contains all urls along with componenet 
+ex- {
+path: 'login', component:LoginComponent
+
+
+router-outlet- a placeholder that ;et user to load the components dynamical;ly based on 
+<router-outlet></router-outlet> this we place in appcomponent html to route all the component to this page
+
+},
+
+============================================================================================================================
+
+
+
+Forms----
+
+-> Template driven Form
+imports FormsModule from @angular/forms  in Appmodule.ts.
+NgFOrm Directive: this directive binds the form element and tracks the form state . 
+
+we use the ngForm directive by adding #contactForm = "ngForm" to the <form>  elemnt. 
+
+<form #myfrm = "ngForm>  contains all ui control vales.
+</form>
+
+<input type=test #m="ngModel" ngModel>
+ngModel: any ui controls
+
+bind the control values to the form variable.
+
+this directuve binds input element to form data and tracks their state
+
+{{m.touched}}
+{{m.untouched}}
+{{m.dirty}} -- if we type anything 
+{{m.pristine}} -- reverse of dirty
+{{m.vaild}}  ----- for validation
+{{m.invalid}}
+===================================================================================================================
+
+
+
+-> Model Driven Form ( Reactive Form)  ---
+
+it provide a more programmatic and flexible way to work with dorms in Angular.
+
+
+Keywords used in this-----
+
+FormGroup:  it's a class in Angular that represents a group of form contols .  contains all textvalues / state equivalent to ngForm in template driven form
+
+
+this.f = new FormGroup({
+username: new FormControl("admin",[Validators.required, Validators.pattern"[0-9]+")]),
+pwd: new FormControl("", Validators.maxLength(3))   
+
+)}            
+
+
+FormControl:  Reprsents an individul form input                          ngModel
+
+FormControlName:                         name
+
+Validators                             validation logic(required pattern of Template driven form now we don't have to use in reactive)
+
+<form formgroup="f>
+<input type = "text" FormControls="username">
+<input type = "text" FormControls="pwd">
+</form>
+
+
+
+
+==========================================
+Services in Angular -----
+--It is similar to library
+--It only contains a code which is common to all component file.
+
+any component can inherit the service file 
+
+
+----> ng g s ServiceName
+
+this file will not have html and css file 
+
+@injectable-->  object is created and component will be only consuming the object no need to create seprate object in component files.
+
+
+
+
+
+
+
+Pipes-----
+Transforming from one form to other.
+
+*UpperCase                                                    *Date
+*LowerCase                                                  *Json
+*slice  (slice:0:5 display 5 characters)                 *Currency
+*Number                                                *Percent
+
+Custom pipe - 
+ng g pipe Discount - pipes will be created 
+
+
+
+================================================
+     }
+queryparam--> 
+
+Query String =[queryParams] ="{a:i.pid,b:i.pname, c:i.pimage,d:i.price,e:i.qty}"
+   <div><a routerLink="/buy" [queryParams] ="{a:i.pid,b:i.pname, c:i.pimage,d:i.price,e:i.qty}" class="btn btn-success">Buy</a></div>
+
+//using activated route you can read query string fromm the current url
+constructor(public obj:OnlineserviceService, public r:ActivatedRoute){
+
+
+================
+RouteDark -- it block until you are logged in 
+ng g guard myGuard
+----> path: 'buy', component:BuyComponent, canActivate:[myguardGuard]
+      
+canActivate:[myguardGuard]
+
+
+-->======================= code for login (Important)========================================
+-> Router --> for navigation
+->Activatedroute : reads the value from the current url(queryString)
+--> Session-> to store the user session such as uid key and value
+queryparam-> 
+
+constructor(public ob:Router){
+
+}
+
+validate(){
+  
+  let u = (document.getElementById("uid")  as HTMLInputElement).value
+  let p = (document.getElementById("pwd")  as HTMLInputElement).value
+
+
+  if(u =="admin" && p == "India123"){this.status = "valid user";
+sessionStorage.setItem("uid",u)
+
+this.ob.navigate(['products'])
+
+  }
+else{
+  this.status = "Invalid user";
+}
+      
+
+
+
+=============================================================
+
+
+DataBase in angular 
+
+SSMS- Windows authentication for local 
+
+
+
+
+Webapi--
+
+Install nodejs
+npm install Express
+npm install mssql
+npm instal nodesqlv8
+
+
+
+
+observeral is asynchronus in nature
+
+
+
+
+
+====
+
+@input decorator -- parent data to child communication
+
+@Output decorator -- child to parent communication 
+
+
+
+
+Lifecycle Hooks--
+
+contsructor--invoked when angular compnenets created or application run
+ngOnChanges-- called if any changes in Input properties of component
+ngOnInit-- called after onChange and used for initalization 
+ngDoCheck-- invoked when the change detected of the component
+ngOnDestroy  -- this method will b e invoked just after destroying the component
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
